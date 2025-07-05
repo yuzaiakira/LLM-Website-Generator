@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>AI Website Generator - Create Websites with AI | LLM Website Generator</title>
+    <meta name="title" content="AI Website Generator - Create Websites with AI | LLM Website Generator">
+    <meta name="description" content="Generate complete, self-contained HTML websites instantly using AI. Describe your website in natural language and get professional code with live preview. Free, no setup required.">
+    <meta name="keywords" content="AI website generator, HTML generator, website builder, AI tools, web development, code generation, LLM, artificial intelligence, website creator">
+    <meta name="author" content="LLM Website Generator">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yuzaiakira.github.io/LLM-Website-Generator/">
+    <meta property="og:title" content="AI Website Generator - Create Websites with AI">
+    <meta property="og:description" content="Generate complete, self-contained HTML websites instantly using AI. Describe your website in natural language and get professional code with live preview.">
+    <meta property="og:image" content="https://yuzaiakira.github.io/LLM-Website-Generator/assets/images/screenshot.png">
+    <meta property="og:site_name" content="LLM Website Generator">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yuzaiakira.github.io/LLM-Website-Generator/">
+    <meta property="twitter:title" content="AI Website Generator - Create Websites with AI">
+    <meta property="twitter:description" content="Generate complete, self-contained HTML websites instantly using AI. Describe your website in natural language and get professional code with live preview.">
+    <meta property="twitter:image" content="https://yuzaiakira.github.io/LLM-Website-Generator/assets/images/screenshot.png">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="theme-color" content="#667eea">
+    <meta name="msapplication-TileColor" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="AI Website Generator">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yuzaiakira.github.io/LLM-Website-Generator/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/images/logo.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/logo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/logo.png">
+    
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+     
+    <!-- styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "AI Website Generator",
+        "description": "Generate complete, self-contained HTML websites instantly using AI. Describe your website in natural language and get professional code with live preview.",
+        "url": "https://yuzaiakira.github.io/LLM-Website-Generator/",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "LLM Website Generator"
+        },
+        "featureList": [
+            "AI-powered website generation",
+            "Live code preview",
+            "Editable code with real-time updates",
+            "Multiple AI providers support",
+            "Responsive design",
+            "No setup required"
+        ],
+        "screenshot": "https://yuzaiakira.github.io/LLM-Website-Generator/assets/images/screenshot.png",
+        "softwareVersion": "1.0.0"
+    }
+    </script>
+
+</head>
+<body class="gradient-bg">
+    <header class="container mx-auto p-4">
+        <nav class="flex justify-between items-center mb-4">
+            <h1 class="text-2xl font-bold text-white">
+                🤖 LLM Website Generator
+            </h1>
+            <div class="flex items-center gap-2">
+                <span id="model-badge" class="text-xs text-gray-300 bg-black bg-opacity-20 px-2 py-1 rounded hidden">
+                    <span id="model-name">No model selected</span>
+                </span>
+                <button 
+                    id="settings-button"
+                    class="text-2xl hover:scale-110 transition-transform cursor-pointer"
+                    title="Settings"
+                >
+                    ⚙️
+                </button>
+            </div>
+        </nav>
+    </header>
+    
+    <main class="container mx-auto p-4 h-screen">
+        <div class="layout-container">
+            <!-- Left Side: Chat Interface -->
+            <section class="layout-section glassmorphism rounded-lg p-4 flex flex-col">
+                <h2 class="sr-only">Chat Interface</h2>
+                
+                <!-- Chat Messages Area -->
+                <div id="chat-messages" class="flex-1 overflow-y-auto mb-4 space-y-3" role="log" aria-live="polite">
+                    <div class="bot-message glassmorphism rounded-lg p-3 message-bubble">
+                        <p class="text-white">Hello! I'm your AI website generator. Describe the website you'd like me to create, and I'll generate the complete HTML code for you.</p>
+                    </div>
+                </div>
+                
+                <!-- Input Area -->
+                <div class="flex flex-col gap-2">
+                    <textarea 
+                        id="user-input" 
+                        placeholder="Describe your website in detail (e.g., 'A portfolio site for a photographer with a dark theme, showcasing their best work in a gallery format')"
+                        rows="3"
+                        class="w-full px-4 py-2 rounded-lg glassmorphism text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"
+                        style="white-space: pre-wrap; word-wrap: break-word;"
+                    ></textarea>
+                    <div class="flex justify-between items-center">
+                        <div class="text-xs text-gray-300">
+                            Press Ctrl+Enter to send, or use the button below
+                        </div>
+                        <button 
+                            id="send-button"
+                            class="px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
+                        >
+                            Send
+                        </button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Right Side: Code Output -->
+            <section class="layout-section glassmorphism rounded-lg p-4 flex flex-col">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold text-white">Generated Website</h2>
+                    
+                    <div class="flex items-center gap-2">
+                        <!-- Format Button (hidden by default) -->
+                        <button 
+                            id="format-code-btn" 
+                            class="px-3 py-1 bg-gray-600 hover:bg-gray-700 text-white text-xs rounded transition-colors hidden"
+                            title="Format Code"
+                        >
+                            Format
+                        </button>
+                        
+                        <!-- Tab Buttons -->
+                        <div class="flex gap-1">
+                            <button 
+                                id="code-tab" 
+                                class="tab-active px-4 py-2 rounded-t-lg text-white text-sm font-medium transition-all"
+                            >
+                                Code
+                            </button>
+                            <button 
+                                id="demo-tab" 
+                                class="tab-inactive px-4 py-2 rounded-t-lg text-white text-sm font-medium transition-all"
+                            >
+                                Demo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tab Content -->
+                <div id="tab-content" class="flex-1 relative">
+                    <!-- Code Tab Content -->
+                    <div id="code-content" class="absolute inset-0 overflow-hidden">
+                        <div id="generated-code" class="code-output rounded-lg p-4 text-sm overflow-auto" style="height: 100%;">
+// Generated HTML will appear here...
+                        </div>
+                    </div>
+                    
+                    <!-- Demo Tab Content -->
+                    <div id="demo-content" class="absolute inset-0 h-full w-full hidden">
+                        <div id="preview-container" class="preview-frame h-full">
+                            <iframe id="preview-frame" class="w-full h-full border-0"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer class="bg-black bg-opacity-20 text-white text-center py-4 mt-8">
+        <div class="container mx-auto px-4">
+            <p class="text-lg">Made with <span class="text-red-500">♥</span> and <span class="text-yellow-600">☕</span> by 
+                <a href="https://yuzaiakira.github.io" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 transition-colors duration-300 font-semibold">Akira</a></p>
+            <nav class="mt-2 space-x-4 text-sm">
+                <a href="https://github.com/yuzaiakira/LLM-Website-Generator" class="hover:text-blue-300">Privacy Policy</a>
+                <a href="https://github.com/yuzaiakira/LLM-Website-Generator" class="hover:text-blue-300">Terms of Service</a>
+                <a href="mailto:yuzai.akira@gmail.com" class="hover:text-blue-300">Contact</a>
+            </nav>
+        </div>
+    </footer>
+    
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+        <div class="glassmorphism rounded-lg p-6 w-full max-w-md mx-4">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold text-white">Settings</h2>
+                <button id="close-settings" class="text-white hover:text-gray-300 text-2xl">&times;</button>
+            </div>
+            
+            <form id="settings-form" class="space-y-4">
+                <!-- API Provider Toggle -->
+                <div class="flex items-center justify-between p-3 rounded-lg glassmorphism">
+                    <span class="text-white text-sm font-medium">API Provider</span>
+                    <div class="flex items-center gap-3">
+                        <span class="text-xs text-gray-300">OpenRouter</span>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="api-toggle" class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-600 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                        </label>
+                        <span class="text-xs text-gray-300">Google</span>
+                    </div>
+                </div>
+                
+                <!-- OpenRouter Fields -->
+                <div id="openrouter-fields" class="space-y-4">
+                    <div>
+                        <label for="openrouter-api-key" class="block text-white text-sm font-medium mb-2">
+                            OpenRouter API Key
+                        </label>
+                        <input 
+                            type="password" 
+                            id="openrouter-api-key" 
+                            placeholder="Enter your OpenRouter API key"
+                            class="w-full px-3 py-2 rounded-lg glassmorphism text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        >
+                        <p class="text-xs text-gray-300 mt-1">
+                            Get your API key from <a href="https://openrouter.ai/keys" target="_blank" class="text-blue-400 hover:underline">openrouter.ai/keys</a>
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <label for="openrouter-model" class="block text-white text-sm font-medium mb-2">
+                            OpenRouter Model
+                        </label>
+                        <input 
+                            type="text" 
+                            id="openrouter-model" 
+                            placeholder="e.g., google/gemini-2.0-flash, openai/gpt-4o"
+                            class="w-full px-3 py-2 rounded-lg glassmorphism text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        >
+                        <p class="text-xs text-gray-300 mt-1">
+                            Enter the model identifier (e.g., google/gemini-2.0-flash, openai/gpt-4o, anthropic/claude-3.5-sonnet)
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Google API Fields -->
+                <div id="google-fields" class="space-y-4 hidden">
+                    <div>
+                        <label for="google-api-key" class="block text-white text-sm font-medium mb-2">
+                            Google API Key
+                        </label>
+                        <input 
+                            type="password" 
+                            id="google-api-key" 
+                            placeholder="Enter your Google API key"
+                            class="w-full px-3 py-2 rounded-lg glassmorphism text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        >
+                        <p class="text-xs text-gray-300 mt-1">
+                            Get your API key from <a href="https://makersuite.google.com/app/apikey" target="_blank" class="text-blue-400 hover:underline">Google AI Studio</a>
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <label for="google-model" class="block text-white text-sm font-medium mb-2">
+                            Google Model
+                        </label>
+                        <input 
+                            type="text" 
+                            id="google-model" 
+                            placeholder="e.g., gemini-2.5-pro, gemini-2.5-flash"
+                            class="w-full px-3 py-2 rounded-lg glassmorphism text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        >
+                        <p class="text-xs text-gray-300 mt-1">
+                            Enter the model name (e.g., gemini-2.5-pro, gemini-2.5-flash, gemini-1.5-pro)
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="flex gap-2 pt-2">
+                    <button 
+                        type="submit"
+                        class="flex-1 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
+                    >
+                        Save Settings
+                    </button>
+                    <button 
+                        type="button"
+                        id="cancel-settings"
+                        class="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-colors"
+                    >
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Custom JavaScript -->
+    <script type="module" src="assets/js/app.js"></script>
+    
+    <!-- Additional SEO Scripts -->
+    <script>
+        // Track page views for analytics (if needed)
+        if (typeof gtag !== 'undefined') {
+            gtag('config', 'GA_MEASUREMENT_ID');
+        }
+        
+        // Add structured data for breadcrumbs
+        const breadcrumbData = {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://yuzaiakira.github.io/LLM-Website-Generator/"
+            }]
+        };
+        
+        // Inject breadcrumb structured data
+        const breadcrumbScript = document.createElement('script');
+        breadcrumbScript.type = 'application/ld+json';
+        breadcrumbScript.textContent = JSON.stringify(breadcrumbData);
+        document.head.appendChild(breadcrumbScript);
+    </script>
+</body>
+</html> 

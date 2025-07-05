@@ -1,0 +1,289 @@
+body{
+    min-height: 105vh;
+}
+/* Custom scrollbar for chat messages */
+#chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+#chat-messages::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+#chat-messages::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+#chat-messages::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Custom scrollbar for code output */
+#generated-code::-webkit-scrollbar {
+    width: 8px;
+}
+
+#generated-code::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+#generated-code::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+#generated-code::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Loading animation */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .flex {
+        flex-direction: column;
+    }
+    
+    .flex-1 {
+        margin-bottom: 1rem;
+    }
+    
+    .message-bubble {
+        max-width: 95%;
+    }
+}
+
+/* Focus states for better accessibility */
+input:focus, textarea:focus, button:focus {
+    outline: 2px solid rgba(59, 130, 246, 0.5);
+    outline-offset: 2px;
+}
+
+/* Textarea specific styles */
+textarea {
+    font-family: inherit;
+    line-height: 1.5;
+}
+
+textarea::placeholder {
+    color: rgba(209, 213, 219, 0.8);
+}
+
+/* Smooth transitions */
+* {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Code syntax highlighting (basic) */
+.code-output {
+    line-height: 1.5;
+}
+
+.code-output .tag {
+    color: #ff6b6b;
+}
+
+.code-output .attribute {
+    color: #4ecdc4;
+}
+
+.code-output .value {
+    color: #ffe66d;
+} 
+.glassmorphism {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.glassmorphism-dark {
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.message-bubble {
+    max-width: 80%;
+    word-wrap: break-word;
+    white-space: pre-line;
+}
+
+.user-message {
+    background: rgba(59, 130, 246, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.bot-message {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tab-active {
+    background: rgba(255, 255, 255, 0.2);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.tab-inactive {
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 2px solid transparent;
+}
+
+.code-output {
+    background: rgba(0, 0, 0, 0.8);
+    color: #e5e7eb;
+    font-family: 'Courier New', monospace;
+    white-space: pre;
+    word-wrap: normal;
+    overflow-wrap: normal;
+    min-width: 0;
+    max-width: 100%;
+    line-height: 1.4;
+    tab-size: 4;
+    /* Ensure proper scrolling */
+    overflow-x: auto;
+    overflow-y: auto;
+    /* Prevent content from wrapping */
+    white-space: pre;
+    word-break: keep-all;
+    /* Height and scrolling */
+    height: 100%;
+    min-height: 200px;
+}
+
+.code-output.editable {
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    outline: none;
+    cursor: text;
+}
+
+.code-output.editable:focus {
+    border-color: rgba(59, 130, 246, 0.6);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Ensure code container doesn't overflow */
+#code-content {
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Tab content switching */
+#tab-content {
+    position: relative;
+    height: 100%;
+}
+
+#code-content,
+#demo-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+#code-content.hidden,
+#demo-content.hidden {
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+#code-content:not(.hidden),
+#demo-content:not(.hidden) {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+}
+
+/* Custom scrollbar for code area */
+.code-output::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/* Ensure scrolling works on all browsers */
+.code-output {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
+}
+
+.code-output::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.code-output::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+.code-output::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.preview-frame {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Ensure 50/50 layout */
+.layout-container {
+    display: flex;
+    gap: 1rem;
+    min-height: calc(100vh - 200px);
+}
+
+.layout-section {
+    flex: 1 1 50%;
+    min-width: 0;
+    width: 50%;
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 768px) {
+    .layout-container {
+        flex-direction: column;
+    }
+    
+    .layout-section {
+        width: 100%;
+        flex: 1 1 100%;
+    }
+    
+    .code-output {
+        min-height: 150px;
+    }
+}
