@@ -1,4 +1,4 @@
-# 🧠 AI Website Generator - Create Professional Websites with AI
+# 🤖 AI Website Generator - Create Professional Websites with AI
 
 **Generate complete, self-contained HTML websites instantly using artificial intelligence.** This modern web application transforms natural language descriptions into professional, responsive websites with a beautiful glassmorphic UI. Perfect for developers, designers, and anyone who wants to create websites quickly without coding.
 
